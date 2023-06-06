@@ -94,7 +94,7 @@ func GinContextFromContext(ctx context.Context) (*gin.Context, error) {
 }
 ```
 
-Lastly, in the Resolver, retrieve the `gin.Context` with the previous defined function:
+In the Resolver, retrieve the `gin.Context` with the previous defined function:
 ```go
 func (r *resolver) Todo(ctx context.Context) (*Todo, error) {
 	gc, err := GinContextFromContext(ctx)
@@ -104,4 +104,12 @@ func (r *resolver) Todo(ctx context.Context) (*Todo, error) {
 
 	// ...
 }
+```
+
+## What do we do with the `&graph.Resolver{}}` error in `server.go`?
+
+```
+cannot use &(graph.Resolver literal) (value of type *graph.Resolver) as graph.ResolverRoot value in struct literal: *graph.Resolver does not implement graph.ResolverRoot (wrong type for method Todo)
+		have Todo(ctx context.Context) (graph.TodoResolver, error)
+		want Todo() graph.TodoResolvercompilerInvalidIfaceAssign
 ```
